@@ -1,5 +1,6 @@
+
 import React, { useEffect, useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { getCalApi } from "@calcom/embed-react";
 import { Hero } from './components/Hero';
 import { ClientsSection } from './components/ClientsSection';
@@ -11,11 +12,48 @@ import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { Preloader } from './components/Preloader';
 import { Starfield } from './components/Starfield';
+import { LandscapePrompt } from './components/LandscapePrompt';
+import { ChatBot } from './components/ChatBot';
 import { Zap } from 'lucide-react';
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [scrolled, setScrolled] = useState(false);
+  const [isMobilePortrait, setIsMobilePortrait] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+
+  // Nav Links Configuration
+  const navLinks = [
+    { name: 'The Gap', href: '#problem', id: 'problem' },
+    { name: 'Protocol', href: '#protocol', id: 'protocol' },
+    { name: 'Services', href: '#capabilities', id: 'capabilities' },
+    { name: 'Results', href: '#results', id: 'results' },
+    { name: 'FAQ', href: '#faq', id: 'faq' },
+  ];
+
+  // Orientation Check Logic
+  useEffect(() => {
+    const checkOrientation = () => {
+      // Define mobile as width <= 850px (covering tablets/phones)
+      const isMobileWidth = window.innerWidth <= 850; 
+      const isPortrait = window.innerHeight > window.innerWidth;
+      
+      // Only show prompt if it is a mobile device AND in portrait mode
+      setIsMobilePortrait(isMobileWidth && isPortrait);
+    };
+
+    // Check immediately
+    checkOrientation();
+
+    // Add listeners
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', checkOrientation);
+
+    return () => {
+      window.removeEventListener('resize', checkOrientation);
+      window.removeEventListener('orientationchange', checkOrientation);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,12 +63,59 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Active Section Observer
+  useEffect(() => {
+    if (loading) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px', // Activate when the section is in the middle of the viewport
+      threshold: 0
+    };
+
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    // Slight delay to ensure DOM is fully painted after loading
+    const timer = setTimeout(() => {
+        const sections = document.querySelectorAll('section[id]');
+        sections.forEach((section) => observer.observe(section));
+    }, 100);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(timer);
+    };
+  }, [loading]);
+
   useEffect(() => {
     (async function () {
       const cal = await getCalApi({"namespace":"unicorn-website-strategy-call"});
       cal("ui", {"theme":"dark","hideEventTypeDetails":false,"layout":"month_view"});
     })();
   }, []);
+
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(targetId);
+    }
+  };
+
+  // If mobile portrait, block everything else and show prompt
+  if (isMobilePortrait) {
+    return <LandscapePrompt />;
+  }
 
   return (
     <>
@@ -56,16 +141,30 @@ function App() {
                 : 'bg-transparent border-transparent py-6 px-6'
             }`}
           >
-             <a href="#" className="font-display font-bold text-2xl tracking-tighter cursor-pointer text-white hover:opacity-80 transition-opacity">
+             <a href="#" className="font-display font-bold text-2xl tracking-tighter cursor-pointer text-white hover:opacity-80 transition-opacity" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                 NYA<span className="text-primary">.</span>
              </a>
              
              <div className="hidden md:flex gap-8 text-sm font-bold tracking-widest uppercase text-white/80">
-                <a href="#problem" className="hover:text-primary transition-colors">The Gap</a>
-                <a href="#protocol" className="hover:text-primary transition-colors">Protocol</a>
-                <a href="#capabilities" className="hover:text-primary transition-colors">Services</a>
-                <a href="#results" className="hover:text-primary transition-colors">Results</a>
-                <a href="#faq" className="hover:text-primary transition-colors">FAQ</a>
+                {navLinks.map((link) => (
+                  <a 
+                    key={link.name}
+                    href={link.href} 
+                    onClick={(e) => handleScrollTo(e, link.href)}
+                    className={`relative transition-colors duration-300 hover:text-primary ${
+                        activeSection === link.id ? 'text-primary' : ''
+                    }`}
+                  >
+                    {link.name}
+                    {activeSection === link.id && (
+                       <motion.div 
+                         layoutId="active-nav"
+                         className="absolute -bottom-2 left-0 right-0 h-[2px] bg-primary shadow-[0_0_10px_#F70670]"
+                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                       />
+                    )}
+                  </a>
+                ))}
              </div>
 
              <button 
@@ -97,6 +196,8 @@ function App() {
               <FAQ />
             </div>
             <Footer />
+            {/* Inject ChatBot here */}
+            <ChatBot />
           </main>
         )}
       </div>

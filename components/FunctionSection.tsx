@@ -1,80 +1,107 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { TrendingUp, Users, MousePointer2, Layout, Code2, LineChart } from 'lucide-react';
+import { TrendingUp, Users, MousePointer2, Layout, Code2, LineChart, Bot } from 'lucide-react';
 import { Card } from './Card';
 import { EncryptedText } from './ui/encrypted-text';
 import { Button } from './Button';
 
 export const FunctionSection: React.FC = () => {
   return (
-    <section id="capabilities" className="py-32 bg-background relative overflow-hidden">
+    <section id="capabilities" className="py-20 md:py-32 bg-background relative overflow-hidden">
        {/* Ambient glow from bottom */}
        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-[300px] bg-primary/10 blur-[100px] rounded-full pointer-events-none" />
 
        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-4xl md:text-5xl font-display font-black mb-6">
+          <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
+            <h2 className="text-4xl md:text-5xl font-display font-black mb-6 leading-tight">
               <EncryptedText 
-                text="Full-Stack" 
+                text="FULL-STACK" 
                 revealedClassName="text-white"
                 revealDelayMs={60}
               /> <br/> 
               <span className="text-primary">
                  <EncryptedText 
-                    text="Dominance" 
+                    text="DOMINANCE" 
                     revealedClassName="text-primary"
                     revealDelayMs={60}
                  />
               </span>
             </h2>
             <p className="text-lg text-text-muted">
-              We provide end-to-end execution. From the first pixel to the final conversion event.
+              End-to-end execution. From the first pixel to the final sale.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-16 md:mb-24">
               <Card className="bg-surface/30">
                   <Layout className="w-10 h-10 text-primary mb-6" />
-                  <h3 className="text-2xl font-bold mb-4 font-display">Hyper-Visual Design</h3>
-                  <p className="text-text-muted text-sm leading-relaxed mb-4">
-                      We break patterns. Using WebGL, 3D assets, and micro-interactions, we create an immersive experience that keeps users glued to the screen.
+                  <h3 className="text-2xl font-bold mb-4 font-display uppercase">Hyper-Visual Design</h3>
+                  <p className="text-white font-semibold text-sm leading-relaxed mb-2">
+                      We don't just look premium—we command attention.
+                  </p>
+                  <p className="text-text-muted text-sm leading-relaxed mb-6">
+                      Immersive WebGL environments, custom 3D assets, and cinematic micro-interactions that make users stop scrolling and start engaging. Your competitors look flat. You look untouchable.
                   </p>
                   <ul className="text-xs text-white/60 space-y-2">
-                      <li>• 3D Modelling & Renders</li>
-                      <li>• Motion Design Systems</li>
-                      <li>• UI/UX Architecture</li>
+                      <li className="flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"/> Custom 3D Modeling & Renders</li>
+                      <li className="flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"/> Cinematic Motion Design Systems</li>
+                      <li className="flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"/> Premium UI/UX Architecture</li>
                   </ul>
               </Card>
+
               <Card className="bg-surface/30">
                   <Code2 className="w-10 h-10 text-primary mb-6" />
-                  <h3 className="text-2xl font-bold mb-4 font-display">Elite Development</h3>
-                  <p className="text-text-muted text-sm leading-relaxed mb-4">
-                      Clean code that scales. We build on the modern stack (React, Next.js, Tailwind) to ensure your site is future-proof and lightning fast.
+                  <h3 className="text-2xl font-bold mb-4 font-display uppercase">Elite Development</h3>
+                  <p className="text-white font-semibold text-sm leading-relaxed mb-2">
+                      Built on the modern stack. Engineered to scale.
+                  </p>
+                  <p className="text-text-muted text-sm leading-relaxed mb-6">
+                      Clean, future-proof code powered by React, Next.js, and Tailwind. Lightning-fast performance that keeps users engaged and search engines happy.
                   </p>
                    <ul className="text-xs text-white/60 space-y-2">
-                      <li>• Headless CMS Integration</li>
-                      <li>• API Development</li>
-                      <li>• Web3 & Blockchain Ready</li>
+                      <li className="flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"/> Headless CMS Integration</li>
+                      <li className="flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"/> Custom API Development</li>
+                      <li className="flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"/> Web3 & Blockchain-Ready Infrastructure</li>
                   </ul>
               </Card>
+
               <Card className="bg-surface/30">
-                  <LineChart className="w-10 h-10 text-primary mb-6" />
-                  <h3 className="text-2xl font-bold mb-4 font-display">Conversion Engineering</h3>
-                  <p className="text-text-muted text-sm leading-relaxed mb-4">
-                      Beauty means nothing without sales. We bake in psychological triggers and data loops to turn visitors into revenue.
+                  <Bot className="w-10 h-10 text-primary mb-6" />
+                  <h3 className="text-2xl font-bold mb-4 font-display uppercase">AI-Powered Sales Automation</h3>
+                   <p className="text-white font-semibold text-sm leading-relaxed mb-2">
+                      Your website works 24/7—so should your sales team.
+                  </p>
+                  <p className="text-text-muted text-sm leading-relaxed mb-6">
+                      We integrate intelligent chat assistants and automated sales systems that qualify leads, answer questions, and book meetings while you sleep. High-ticket clients expect instant, intelligent responses.
                   </p>
                    <ul className="text-xs text-white/60 space-y-2">
-                      <li>• CRO Audits</li>
-                      <li>• A/B Testing Infrastructure</li>
-                      <li>• Funnel Optimization</li>
+                      <li className="flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"/> AI Chat Assistants (Lead Qualification)</li>
+                      <li className="flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"/> Automated Sales Funnels & Sequences</li>
+                      <li className="flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"/> Smart CRM Integration & Follow-Up</li>
+                  </ul>
+              </Card>
+
+              <Card className="bg-surface/30">
+                  <LineChart className="w-10 h-10 text-primary mb-6" />
+                  <h3 className="text-2xl font-bold mb-4 font-display uppercase">Conversion Engineering</h3>
+                   <p className="text-white font-semibold text-sm leading-relaxed mb-2">
+                      Beauty without sales is just expensive art.
+                  </p>
+                  <p className="text-text-muted text-sm leading-relaxed mb-6">
+                      We architect every page with psychological triggers, conversion-optimized flows, and data feedback loops that turn traffic into revenue. Your site doesn't just impress—it closes.
+                  </p>
+                   <ul className="text-xs text-white/60 space-y-2">
+                      <li className="flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"/> Conversion Rate Optimization (CRO) Audits</li>
+                      <li className="flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"/> A/B Testing Infrastructure</li>
+                      <li className="flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"/> Revenue Funnel Optimization</li>
                   </ul>
               </Card>
           </div>
 
           {/* CTA In-Flow */}
-          <div className="flex justify-center mb-24">
+          <div className="flex justify-center mb-16 md:mb-24">
              <Button 
-                className="scale-110"
+                className="scale-110 w-full md:w-auto"
                 data-cal-namespace="unicorn-website-strategy-call"
                 data-cal-link="navneethbekalbiz/unicorn-website-strategy-call"
                 data-cal-config='{"layout":"month_view","theme":"dark"}'
@@ -85,7 +112,7 @@ export const FunctionSection: React.FC = () => {
 
           {/* Dashboard Visual - Kept for authority signaling */}
           <motion.div 
-            className="relative mx-auto max-w-5xl"
+            className="relative mx-auto max-w-5xl hidden md:block"
             initial={{ opacity: 0, y: 50, rotateX: 10 }}
             whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
             viewport={{ once: true }}

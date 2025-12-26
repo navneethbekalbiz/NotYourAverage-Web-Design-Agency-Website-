@@ -15,7 +15,8 @@
     "react": "^19.2.3",
     "clsx": "latest",
     "tailwind-merge": "latest",
-    "@calcom/embed-react": "latest"
+    "@calcom/embed-react": "latest",
+    "@google/genai": "^1.34.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

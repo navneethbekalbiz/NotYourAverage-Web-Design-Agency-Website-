@@ -6,15 +6,15 @@ import { Button } from './Button';
 
 export const StatusSection: React.FC = () => {
   return (
-    <section id="problem" className="py-32 bg-background relative overflow-hidden">
+    <section id="problem" className="py-24 md:py-32 bg-background relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1/2 h-full bg-gradient-to-l from-secondary/10 to-transparent pointer-events-none" />
 
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
           {/* Text Content */}
-          <div className="space-y-10">
+          <div className="space-y-8 md:space-y-10">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -24,50 +24,54 @@ export const StatusSection: React.FC = () => {
               <h2 className="text-primary font-display font-bold text-xl uppercase tracking-widest mb-4">
                 The Problem
               </h2>
-              <h3 className="text-5xl md:text-6xl font-display font-black leading-tight mb-6">
+              <h3 className="text-4xl md:text-6xl font-display font-black leading-tight mb-6">
                 <EncryptedText 
                     text="You Look Like" 
                     className="block"
                     revealedClassName="text-white"
                     revealDelayMs={60}
                 /> 
-                <span className="text-white/30">
+                <span className="text-primary">
                      <EncryptedText 
                         text="A Risk." 
-                        revealedClassName="text-white/30"
+                        revealedClassName="text-primary"
+                        encryptedClassName="text-primary/40"
                         revealDelayMs={60}
                     />
                 </span>
               </h3>
-              <p className="text-text-muted text-lg leading-relaxed">
-                In the high-ticket economy, trust is binary. If your digital presence feels template-based or dated, you are signaling "low budget" to potential investors and premium clients. 
+              <p className="text-text-muted text-base md:text-lg leading-relaxed">
+                In the high-stakes world of premium deals, investors and high-ticket clients make split-second judgments. A generic, template-based website doesn't just look cheap—it screams unreliable.
               </p>
-              <p className="text-text-muted text-lg leading-relaxed mt-4">
-                We bridge the gap between <strong className="text-white">Product Excellence</strong> and <strong className="text-white">Perceived Value</strong>.
+              <p className="text-white font-bold text-base md:text-lg leading-relaxed mt-4">
+                We turn you into the obvious choice.
+              </p>
+              <p className="text-text-muted text-base md:text-lg leading-relaxed mt-4">
+                Your product might be world-class, but if your website doesn't reflect that caliber, you're losing deals before the conversation even starts.
               </p>
             </motion.div>
 
             {/* Comparison Table for CRO */}
             <motion.div 
-                className="grid grid-cols-2 gap-8"
+                className="grid grid-cols-1 md:grid-cols-2 gap-8"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
             >
                 <div>
-                    <h4 className="font-bold text-white mb-4 border-b border-white/10 pb-2">Average Agency</h4>
+                    <h4 className="font-bold text-white mb-4 border-b border-white/10 pb-2">Traditional Agency</h4>
                     <ul className="space-y-3">
-                        <li className="flex items-center gap-2 text-text-muted text-sm"><XCircle className="w-4 h-4 text-red-500/50" /> 6-8 Week Timeline</li>
-                        <li className="flex items-center gap-2 text-text-muted text-sm"><XCircle className="w-4 h-4 text-red-500/50" /> Template Designs</li>
-                        <li className="flex items-center gap-2 text-text-muted text-sm"><XCircle className="w-4 h-4 text-red-500/50" /> "Ghosting" after launch</li>
+                        <li className="flex items-center gap-2 text-text-muted text-sm"><XCircle className="w-4 h-4 text-red-500/50 shrink-0" /> 6–8 week timelines</li>
+                        <li className="flex items-center gap-2 text-text-muted text-sm"><XCircle className="w-4 h-4 text-red-500/50 shrink-0" /> Cookie-cutter templates</li>
+                        <li className="flex items-center gap-2 text-text-muted text-sm"><XCircle className="w-4 h-4 text-red-500/50 shrink-0" /> Pretty websites that don't sell</li>
                     </ul>
                 </div>
                 <div>
                     <h4 className="font-bold text-primary mb-4 border-b border-primary/20 pb-2">NotYourAverage</h4>
                     <ul className="space-y-3">
-                        <li className="flex items-center gap-2 text-white text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> <span className="font-bold">72-Hour Sprint</span></li>
-                        <li className="flex items-center gap-2 text-white text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> Bespoke 3D & WebGL</li>
-                        <li className="flex items-center gap-2 text-white text-sm"><CheckCircle2 className="w-4 h-4 text-primary" /> Growth Partnership</li>
+                        <li className="flex items-center gap-2 text-white text-sm"><CheckCircle2 className="w-4 h-4 text-primary shrink-0" /> <span className="font-bold">72-hour delivery</span></li>
+                        <li className="flex items-center gap-2 text-white text-sm"><CheckCircle2 className="w-4 h-4 text-primary shrink-0" /> Custom Made, High-End Animations</li>
+                        <li className="flex items-center gap-2 text-white text-sm"><CheckCircle2 className="w-4 h-4 text-primary shrink-0" /> Conversion-focused sales systems</li>
                     </ul>
                 </div>
             </motion.div>
@@ -83,6 +87,7 @@ export const StatusSection: React.FC = () => {
                     data-cal-namespace="unicorn-website-strategy-call"
                     data-cal-link="navneethbekalbiz/unicorn-website-strategy-call"
                     data-cal-config='{"layout":"month_view","theme":"dark"}'
+                    className="w-full md:w-auto"
                 >
                     Stop Being Invisible
                 </Button>
@@ -91,13 +96,13 @@ export const StatusSection: React.FC = () => {
 
           {/* Visual Content - 3D Phone Render Mockup */}
           <motion.div
-            className="relative"
+            className="relative flex justify-center lg:justify-end"
             initial={{ opacity: 0, rotateY: 30, scale: 0.9 }}
             whileInView={{ opacity: 1, rotateY: 0, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, type: "spring" }}
           >
-            <div className="relative mx-auto w-[300px] h-[600px] bg-black rounded-[50px] border-4 border-gray-800 shadow-2xl overflow-hidden transform-gpu rotate-[-5deg] hover:rotate-0 transition-transform duration-500 group">
+            <div className="relative w-full max-w-[300px] h-[600px] bg-black rounded-[50px] border-4 border-gray-800 shadow-2xl overflow-hidden transform-gpu rotate-[-5deg] hover:rotate-0 transition-transform duration-500 group">
                {/* Glossy Overlay */}
                <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-tr from-transparent via-white/10 to-transparent rounded-[46px]" />
                
