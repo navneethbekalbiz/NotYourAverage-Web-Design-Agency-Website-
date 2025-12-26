@@ -35,46 +35,8 @@
             backgroundImage: {
               'glow-gradient': 'radial-gradient(circle at center, rgba(247, 6, 112, 0.15) 0%, rgba(5, 5, 5, 0) 70%)',
             },
-            typography: (theme) => ({
-              DEFAULT: {
-                css: {
-                  color: theme('colors.text.DEFAULT'),
-                  h1: { fontFamily: theme('fontFamily.display'), color: '#fff' },
-                  h2: { fontFamily: theme('fontFamily.display'), color: '#fff' },
-                  h3: { fontFamily: theme('fontFamily.display'), color: theme('colors.primary') },
-                  strong: { color: '#fff' },
-                  a: { color: theme('colors.primary'), '&:hover': { color: '#ff4d9e' } },
-                  blockquote: { borderLeftColor: theme('colors.primary'), color: theme('colors.text.muted') },
-                  code: { color: theme('colors.primary') },
-                },
-              },
-            }),
           },
         },
-        plugins: [
-          function({ addUtilities }) {
-            addUtilities({
-              '.scrollbar-hide': {
-                '-ms-overflow-style': 'none',
-                'scrollbar-width': 'none',
-                '&::-webkit-scrollbar': {
-                  display: 'none'
-                }
-              }
-            })
-          },
-           // Simple simulation of tailwind typography plugin since we can't npm install
-           function({ addComponents, theme }) {
-            addComponents({
-              '.prose': { maxWidth: '65ch', marginLeft: 'auto', marginRight: 'auto' },
-              '.prose h1': { fontSize: '2.25em', marginTop: '0', marginBottom: '0.8888889em', lineHeight: '1.1111111' },
-              '.prose h2': { fontSize: '1.5em', marginTop: '2em', marginBottom: '1em', lineHeight: '1.3333333' },
-              '.prose p': { marginTop: '1.25em', marginBottom: '1.25em' },
-              '.prose ul': { marginTop: '1.25em', marginBottom: '1.25em', paddingLeft: '1.625em', listStyleType: 'disc' },
-              '.prose li': { marginTop: '0.5em', marginBottom: '0.5em' },
-            })
-          }
-        ],
       };
     </script>
     <style>
@@ -101,24 +63,15 @@
   <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@18.3.1",
-    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
-    "react-dom": "https://esm.sh/react-dom@18.3.1",
-    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
-    "framer-motion": "https://esm.sh/framer-motion@11.0.8?external=react,react-dom",
-    "lucide-react": "https://esm.sh/lucide-react@0.344.0?external=react,react-dom",
-    "react-router-dom": "https://esm.sh/react-router-dom@6.22.3?external=react,react-dom",
-    "@remix-run/router": "https://esm.sh/@remix-run/router@1.15.3",
-    "react-helmet-async": "https://esm.sh/react-helmet-async@2.0.4?external=react,react-dom",
-    "clsx": "https://esm.sh/clsx",
-    "tailwind-merge": "https://esm.sh/tailwind-merge",
-    "@calcom/embed-react": "https://esm.sh/@calcom/embed-react?external=react,react-dom",
-    "@google/genai": "https://esm.sh/@google/genai@0.1.1",
+    "framer-motion": "https://esm.sh/framer-motion@^12.23.26",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/",
-    "tailwindcss": "https://esm.sh/tailwindcss@^4.1.18",
-    "next/": "https://esm.sh/next@^16.1.1/",
-    "next": "https://esm.sh/next@^16.1.1"
+    "react": "https://esm.sh/react@^19.2.3",
+    "clsx": "https://esm.sh/clsx",
+    "tailwind-merge": "https://esm.sh/tailwind-merge",
+    "@calcom/embed-react": "https://esm.sh/@calcom/embed-react",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
   }
 }
 </script>
